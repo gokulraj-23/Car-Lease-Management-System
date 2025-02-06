@@ -1,0 +1,28 @@
+package com.tribleCarLeaseManagementSystem.dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.tribleCarLeaseManagementSystem.dto.Car;
+import com.tribleCarLeaseManagementSystem.repo.CarRepo;
+
+public class CarDao {
+
+	@Autowired
+    private CarRepo carRepository;
+    
+    public Car save(Car car) {
+        return carRepository.save(car);
+    }
+    
+    
+    public Car findById(Long id) {
+        return carRepository.findById(id).orElse(null);
+    }
+    
+    
+    public List<Car> findLeaseHistory(Long ownerId) {
+        return carRepository.findLeaseHistory(ownerId);
+    }
+}

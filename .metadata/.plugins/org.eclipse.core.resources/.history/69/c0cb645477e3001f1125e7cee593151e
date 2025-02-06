@@ -1,0 +1,5 @@
+package com.tribleCarLeaseManagementSystem.repo;
+
+public interface UserRepository {
+
+}

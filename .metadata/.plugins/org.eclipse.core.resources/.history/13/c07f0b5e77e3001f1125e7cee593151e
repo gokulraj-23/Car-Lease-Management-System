@@ -1,0 +1,5 @@
+package com.tribleCarLeaseManagementSystem.service;
+
+public class CarService {
+
+}

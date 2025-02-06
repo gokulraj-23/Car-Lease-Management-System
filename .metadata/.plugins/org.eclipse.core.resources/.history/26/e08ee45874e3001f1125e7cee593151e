@@ -1,0 +1,15 @@
+package com.tribleCarLeaseManagementSystem.repo;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.tribleCarLeaseManagementSystem.dto.Car;
+
+public interface CarRepo extends JpaRepository<Car, Long>{
+
+	  // Custom query to fetch lease history for a given car owner
+    @Query("SELECT c FROM Car c WHERE c.owner.id = ?1")
+    List<Car> findLeaseHistory(Long ownerId);
+}

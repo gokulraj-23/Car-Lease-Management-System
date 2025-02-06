@@ -1,0 +1,5 @@
+package com.tribleCarLeaseManagementSystem.dao;
+
+public class CarDao {
+
+}

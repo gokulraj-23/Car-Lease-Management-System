@@ -1,0 +1,5 @@
+package com.tribleCarLeaseManagementSystem.dto;
+
+public class Lease {
+
+}
