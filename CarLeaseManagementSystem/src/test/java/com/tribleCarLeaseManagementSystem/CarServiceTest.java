@@ -20,42 +20,43 @@ import com.tribleCarLeaseManagementSystem.repo.CarRepository;
 import com.tribleCarLeaseManagementSystem.service.CarService;
 
 public class CarServiceTest {
-	 @Mock
-	    private CarRepository carRepository;
 
-	    @InjectMocks
-	    private CarService carService;
+    @Mock
+    private CarRepository carRepository; // Mock the CarRepository dependency
 
-	    private Car car;
+    @InjectMocks
+    private CarService carService; // Inject the mocked repository into CarService
 
-	    @BeforeEach
-	    void setUp() {
-	        car = new Car();
-	        car.setId(1L);
-	        car.setModel("Toyota Corolla");
-	    }
+    private Car car;
 
-	    @Test
-	    void registerCar_ShouldSaveCar() {
-	        when(carRepository.save(car)).thenReturn(car);
-	        Car savedCar = carService.registerCar(car);
-	        assertNotNull(savedCar);
-	        assertEquals("Toyota Corolla", savedCar.getModel());
-	    }
+    @BeforeEach
+    void setUp() {
+        car = new Car();
+        car.setId(1L);
+        car.setModel("Toyota Corolla"); // Set up a sample car instance
+    }
 
-	    @Test
-	    void getCarStatus_ShouldReturnCar_WhenCarExists() {
-	        when(carRepository.findById(1L)).thenReturn(Optional.of(car));
-	        Optional<Car> foundCar = carService.getCarStatus(1L);
-	        assertTrue(foundCar.isPresent());
-	        assertEquals("Toyota Corolla", foundCar.get().getModel());
-	    }
+    @Test
+    void registerCar_ShouldSaveCar() {
+        when(carRepository.save(car)).thenReturn(car);
+        Car savedCar = carService.registerCar(car);
+        assertNotNull(savedCar); // Ensure the saved car is not null
+        assertEquals("Toyota Corolla", savedCar.getModel()); // Validate car model
+    }
 
-	    @Test
-	    void getAllCars_ShouldReturnListOfCars() {
-	        when(carRepository.findAll()).thenReturn(Arrays.asList(car));
-	        List<Car> cars = carService.getAllCars();
-	        assertFalse(cars.isEmpty());
-	        assertEquals(1, cars.size());
-	    }
+    @Test
+    void getCarStatus_ShouldReturnCar_WhenCarExists() {
+        when(carRepository.findById(1L)).thenReturn(Optional.of(car));
+        Optional<Car> foundCar = carService.getCarStatus(1L);
+        assertTrue(foundCar.isPresent()); // Ensure car is found
+        assertEquals("Toyota Corolla", foundCar.get().getModel());
+    }
+
+    @Test
+    void getAllCars_ShouldReturnListOfCars() {
+        when(carRepository.findAll()).thenReturn(Arrays.asList(car));
+        List<Car> cars = carService.getAllCars();
+        assertFalse(cars.isEmpty()); // Ensure the car list is not empty
+        assertEquals(1, cars.size()); // Validate list size
+    }
 }

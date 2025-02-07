@@ -20,7 +20,7 @@ import com.tribleCarLeaseManagementSystem.repo.LeaseRepository;
 import com.tribleCarLeaseManagementSystem.service.LeaseService;
 
 public class LeaseServiceTest {
-	 @Mock
+	  @Mock
 	    private LeaseRepository leaseRepository;
 
 	    @InjectMocks
@@ -32,15 +32,15 @@ public class LeaseServiceTest {
 	    void setUp() {
 	        lease = new Lease();
 	        lease.setId(1L);
-	        lease.setStartDate(LocalDateTime.now());
+	        lease.setStartDate(LocalDateTime.now()); // Initialize lease with start date
 	    }
 
 	    @Test
 	    void startLease_ShouldSaveLease() {
-	        when(leaseRepository.saveAll(lease)).thenReturn(lease);
+	        when(leaseRepository.save(lease)).thenReturn(lease);
 	        Lease savedLease = leaseService.startLease(lease);
-	        assertNotNull(savedLease);
-	        assertEquals(lease.getStartDate(), savedLease.getStartDate());
+	        assertNotNull(savedLease); // Ensure the lease is saved
+	        assertEquals(lease.getStartDate(), savedLease.getStartDate()); // Validate start date
 	    }
 
 	    @Test
@@ -48,13 +48,12 @@ public class LeaseServiceTest {
 	        when(leaseRepository.findById(1L)).thenReturn(Optional.of(lease));
 	        when(leaseRepository.save(any(Lease.class))).thenReturn(lease);
 	        Lease endedLease = leaseService.endLease(1L);
-	        assertNotNull(endedLease.getEndDate());
+	        assertNotNull(endedLease.getEndDate()); // Ensure the end date is updated
 	    }
 
 	    @Test
 	    void endLease_ShouldThrowException_WhenLeaseNotFound() {
 	        when(leaseRepository.findById(1L)).thenReturn(Optional.empty());
-	        assertThrows(ResourceNotFoundException.class, () -> leaseService.endLease(1L));
+	        assertThrows(ResourceNotFoundException.class, () -> leaseService.endLease(1L)); // Expect exception when lease is missing
 	    }
-	    
 }
