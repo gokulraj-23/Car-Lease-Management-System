@@ -1,10 +1,7 @@
 package com.tribleCarLeaseManagementSystem.dto;
-
 import java.rmi.dgc.Lease;
 import java.util.List;
-
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
