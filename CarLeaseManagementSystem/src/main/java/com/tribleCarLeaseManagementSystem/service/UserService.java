@@ -1,10 +1,7 @@
 package com.tribleCarLeaseManagementSystem.service;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-
 import com.tribleCarLeaseManagementSystem.repo.UserRepository;
 
 public class UserService {
